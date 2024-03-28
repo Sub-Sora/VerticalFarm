@@ -1,9 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SellPlants : MonoBehaviour
 {
+    /// <summary>
+    /// Script needed to interact with
+    /// </summary>
+    Interact _interact;
+
+    private void Start()
+    {
+        _interact = GetComponent<Interact>();
+        _interact.InteractEvent += Interaction;
+    }
+
+    /// <summary>
+    /// Sell all plant of the player inventory
+    /// </summary>
     public void Interaction()
     {
         InventoryManager InvManager = InventoryManager.Instance;
@@ -16,6 +28,5 @@ public class SellPlants : MonoBehaviour
             }
             InvManager.RemovePlant();
         }
-        
     }
 }

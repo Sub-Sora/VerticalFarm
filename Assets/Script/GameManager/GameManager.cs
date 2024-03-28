@@ -28,6 +28,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public int StartGold;
 
+    /// <summary>
+    /// Actual SoilSlot Interacted
+    /// </summary>
+    public SoilSlot SoilAct;
+
+    public delegate void SleepDelegate();
+    public SleepDelegate SleepEvent;
+
     //Singleton
     private static GameManager _instance = null;
     private GameManager() { }
@@ -47,6 +55,7 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
         //
+        SoilAct = null;
         if (ListOfSeeds != null) ListOfSeeds = ListOfSeeds.OrderBy(s => s.Name).ToArray();
         if (ListOfPlants != null) ListOfPlants = ListOfPlants.OrderBy(p => p.Name).ToArray();
     }
@@ -54,5 +63,7 @@ public class GameManager : MonoBehaviour
     public void NextDay()
     {
         InventoryManager.Instance.Gold = InventoryManager.Instance.Gold + GoldReceived;
+        UIManager.Instance.UpdateGold();
+        SleepEvent?.Invoke();
     }
 }

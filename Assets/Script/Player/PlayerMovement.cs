@@ -19,6 +19,4 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = _moveDirection * Speed;
     }
 
-    
-
 }

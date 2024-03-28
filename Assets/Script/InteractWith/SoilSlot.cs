@@ -1,12 +1,16 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SoilSlot : MonoBehaviour
 {
     /// <summary>
+    /// Script needed to interact with
+    /// </summary>
+    Interact _interact;
+
+    /// <summary>
     /// Seed planted on the slot
     /// </summary>
-    private Seed_ScriptanbleObj _seedPlanted;
+    private Seeds _seed;
 
     /// <summary>
     /// Verify if the slot is watered
@@ -28,13 +32,22 @@ public class SoilSlot : MonoBehaviour
     /// </summary>
     private int _actGrow;
 
+    private void Start()
+    {
+        _interact = GetComponent<Interact>();
+        _interact.InteractEvent += Interaction;
+        _seed = GetComponent<Seeds>();
+        GameManager.Instance.SleepEvent += DayPassed;
+    }
+
     /// <summary>
     /// Plant seed if soil is empty
     /// </summary>
     /// <param name="seed">The seed to plant</param>
-    private void PlantSeed(Seed_ScriptanbleObj seed)
+    public void PlantSeed(Seed_ScriptanbleObj seed)
     {
-        _seedPlanted = seed;
+        _seed.ActSeed = seed;
+        _seed.UpdateSeed();
     }
 
     /// <summary>
@@ -50,7 +63,7 @@ public class SoilSlot : MonoBehaviour
     /// </summary>
     private void Gather()
     {
-        InventoryManager.Instance.AddPlant(_seedPlanted.PlantGet);
+        InventoryManager.Instance.AddPlant(_seed.PlantGet);
         ResetSoil();
     }
 
@@ -67,7 +80,7 @@ public class SoilSlot : MonoBehaviour
     /// </summary>
     public void DayPassed()
     {
-        if (_seedPlanted != null)
+        if (_seed.ActSeed != null && _actGrow < _seed.GrowTime)
         {
             if (_isWatered)
             {
@@ -90,7 +103,7 @@ public class SoilSlot : MonoBehaviour
     /// </summary>
     private void ResetSoil()
     {
-        _seedPlanted = null;
+        _seed.ActSeed = null;
         _isWatered = false;
         _isWilted = false;
         _noWateredDay = 0;
@@ -99,12 +112,14 @@ public class SoilSlot : MonoBehaviour
 
     public void Interaction()
     {
-        if (_seedPlanted != null)
+        // Verify if a seed was planted
+        if (_seed.ActSeed != null)
         {
+            // Verify if a seed wasn't Wilted
             if (!_isWilted)
             {
                 // If plant grow, then car gather it
-                if (_actGrow == _seedPlanted.GrowTime)
+                if (_actGrow == _seed.GrowTime)
                 {
                     Gather();
                 }
@@ -114,8 +129,14 @@ public class SoilSlot : MonoBehaviour
                     WateredSoil();
                 }
             }
+            // Cut the Seed if Wilted
             else Cut();
         }
-        //else | Mettre ici l'accès à la fonction qui ouvrira la fenêtre de choix des graines, et qui la plantera avec la fonction PlantSeed
+        // Plant a seed if no seed already planted
+        else
+        {
+            GameManager.Instance.SoilAct = this;
+            UIManager.Instance.OpenSeedInventory();
+        }
     }
 }

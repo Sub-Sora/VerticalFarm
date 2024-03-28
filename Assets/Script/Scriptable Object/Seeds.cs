@@ -36,7 +36,7 @@ public class Seeds : MonoBehaviour
     [Header("Scriptable Object Use", order = 2)]
     public Seed_ScriptanbleObj ActSeed;
 
-    private void Start()
+    public void UpdateSeed()
     {
         Cost = ActSeed.Cost;
         Name = ActSeed.Name;

@@ -46,6 +46,9 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         Gold = GameManager.Instance.StartGold;
+        // Just in case
+        _updateItemToUI.UpdateSeedUI();
+        _updateItemToUI.UpdatePlantUI();
     }
 
     /// <summary>
@@ -103,7 +106,7 @@ public class InventoryManager : MonoBehaviour
     /// </summary>
     private void SortInventory()
     {
-        if (SeedPossessed != null) SeedPossessed = SeedPossessed.OrderBy(s => s.Name).ToList();
-        if (PlantPossessed != null) PlantPossessed = PlantPossessed.OrderBy(p => p.Name).ToList();
+        if (SeedPossessed.Count > 0) SeedPossessed = SeedPossessed.OrderBy(s => s.Name).ToList();
+        if (PlantPossessed.Count > 0) PlantPossessed = PlantPossessed.OrderBy(p => p.Name).ToList();
     }
 }

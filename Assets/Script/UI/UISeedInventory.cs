@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,5 +14,17 @@ public class UISeedInventory : MonoBehaviour
         Logo = GetComponentInChildren<Image>();
         SeedName.text = SeedStock.Name;
         if (SeedStock.Icon != null) Logo.sprite = SeedStock.Icon;
+    }
+
+    public void PlantSeed()
+    {
+        if (GameManager.Instance.SoilAct != null)
+        {
+            SoilSlot actSoil = GameManager.Instance.SoilAct;
+            actSoil.PlantSeed(SeedStock);
+            InventoryManager.Instance.RemoveSeed(SeedStock);
+            UIManager.Instance.CloseSeedInventory();
+            GameManager.Instance.SoilAct = null;
+        }
     }
 }

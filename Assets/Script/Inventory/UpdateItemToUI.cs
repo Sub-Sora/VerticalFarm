@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UpdateItemToUI : MonoBehaviour
 {
+    [Header ("Seed UI")]
     public GameObject UISeedPrefab;
-    public GameObject UIPlantPrefab;
     public Transform UIInventorySeedVertical;
+    [Header ("Plant UI")]
+    public GameObject UIPlantPrefab;
     public Transform UIInventoryPlantVertical;
     public void UpdateSeedUI()
     {
