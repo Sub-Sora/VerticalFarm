@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     [Header("Vendor UI")]
     public GameObject VendorUI;
 
+    public bool _inventoryOpen;
+
     public delegate void ShowCursorDelegate();
     public event ShowCursorDelegate ShowCursorEvent, HideCursorEvent;
 
@@ -36,6 +38,7 @@ public class UIManager : MonoBehaviour
             _instance = this;
         }
         //
+        _inventoryOpen = false;
     }
 
     private void Start()
@@ -54,6 +57,7 @@ public class UIManager : MonoBehaviour
         Inventory.SetActive(true);
         SeedInv.SetActive(true);
         ShowCursorEvent?.Invoke();
+        _inventoryOpen = true;
 
         // Hide Plant just in case
         PlantInv.SetActive(false);
@@ -67,6 +71,10 @@ public class UIManager : MonoBehaviour
         SeedInv.SetActive(false);
         Inventory.SetActive(false);
         HideCursorEvent?.Invoke();
+        _inventoryOpen = false;
+
+        // Just in case
+        if (GameManager.Instance.SoilAct != null) GameManager.Instance.SoilAct = null;
     }
 
     /// <summary>

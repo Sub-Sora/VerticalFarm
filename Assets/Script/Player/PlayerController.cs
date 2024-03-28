@@ -6,12 +6,14 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement _playerMove;
     private PlayerAction _playerAction;
     private PlayerInput _playerInput;
+    private PlayerMenu _playerMenu;
 
     private void Awake()
     {
         _playerMove = GetComponent<PlayerMovement>();
         _playerAction = GetComponent<PlayerAction>();
         _playerInput = GetComponent<PlayerInput>();
+        _playerMenu = GetComponent<PlayerMenu>();
     }
 
     private void Start()
@@ -40,6 +42,14 @@ public class PlayerController : MonoBehaviour
                     if (value.started)
                     {
                         _playerAction.TryInteract();
+                    }
+                    break;
+                }
+            case "Inventory":
+                {
+                    if (value.started) 
+                    {
+                        _playerMenu.ButtonInventoryPress();
                     }
                     break;
                 }
