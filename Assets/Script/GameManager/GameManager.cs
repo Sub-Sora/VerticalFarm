@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     public void NextDay()
     {
         InventoryManager.Instance.Gold = InventoryManager.Instance.Gold + GoldReceived;
+        GoldReceived = 0;
         UIManager.Instance.UpdateGold();
         SleepEvent?.Invoke();
     }

@@ -55,9 +55,9 @@ public partial class @Controller: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Start"",
+                    ""name"": ""PlantInventory"",
                     ""type"": ""Button"",
-                    ""id"": ""e5cfdd61-6dfe-460b-827c-f304ab3a855b"",
+                    ""id"": ""f3e22243-ef79-445f-b9ad-0ab87b8c0ec0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -122,12 +122,12 @@ public partial class @Controller: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""df60f717-6868-48ee-93a7-16a61f8f3dd2"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""id"": ""3acd13d3-5db5-448e-8670-26acb9d8d51c"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Start"",
+                    ""action"": ""PlantInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -141,7 +141,7 @@ public partial class @Controller: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
-        m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
+        m_Player_PlantInventory = m_Player.FindAction("PlantInventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -206,7 +206,7 @@ public partial class @Controller: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Inventory;
-    private readonly InputAction m_Player_Start;
+    private readonly InputAction m_Player_PlantInventory;
     public struct PlayerActions
     {
         private @Controller m_Wrapper;
@@ -214,7 +214,7 @@ public partial class @Controller: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
-        public InputAction @Start => m_Wrapper.m_Player_Start;
+        public InputAction @PlantInventory => m_Wrapper.m_Player_PlantInventory;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,9 +233,9 @@ public partial class @Controller: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
-            @Start.started += instance.OnStart;
-            @Start.performed += instance.OnStart;
-            @Start.canceled += instance.OnStart;
+            @PlantInventory.started += instance.OnPlantInventory;
+            @PlantInventory.performed += instance.OnPlantInventory;
+            @PlantInventory.canceled += instance.OnPlantInventory;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -249,9 +249,9 @@ public partial class @Controller: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
-            @Start.started -= instance.OnStart;
-            @Start.performed -= instance.OnStart;
-            @Start.canceled -= instance.OnStart;
+            @PlantInventory.started -= instance.OnPlantInventory;
+            @PlantInventory.performed -= instance.OnPlantInventory;
+            @PlantInventory.canceled -= instance.OnPlantInventory;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -274,6 +274,6 @@ public partial class @Controller: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
-        void OnStart(InputAction.CallbackContext context);
+        void OnPlantInventory(InputAction.CallbackContext context);
     }
 }

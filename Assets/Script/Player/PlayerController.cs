@@ -51,6 +51,14 @@ public class PlayerController : MonoBehaviour
                     }
                     break;
                 }
+            case "PlantInventory":
+                {
+                    if (value.started && GameManager.Instance.CanMove)
+                    {
+                        UIManager.Instance.OpenPlantInventory();
+                    }
+                    break;
+                }
         }
     }
 }

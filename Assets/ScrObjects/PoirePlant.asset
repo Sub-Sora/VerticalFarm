@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e35a07425a5704e8eced05a1b6535e, type: 3}
   m_Name: PoirePlant
   m_EditorClassIdentifier: 
-  Sell: 0
-  Name: Poire Plante
+  Sell: 8
+  Name: Poire
   Icon: {fileID: 0}

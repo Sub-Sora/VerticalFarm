@@ -33,9 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Start",
+                    "name": "PlantInventory",
                     "type": "Button",
-                    "id": "e5cfdd61-6dfe-460b-827c-f304ab3a855b",
+                    "id": "f3e22243-ef79-445f-b9ad-0ab87b8c0ec0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -100,12 +100,12 @@
                 },
                 {
                     "name": "",
-                    "id": "df60f717-6868-48ee-93a7-16a61f8f3dd2",
-                    "path": "<Keyboard>/p",
+                    "id": "3acd13d3-5db5-448e-8670-26acb9d8d51c",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Start",
+                    "action": "PlantInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

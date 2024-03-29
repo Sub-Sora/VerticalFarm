@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4001cf6229602014c816b6cd7e67793a, type: 3}
   m_Name: Poire
   m_EditorClassIdentifier: 
-  Cost: 0
-  Name: Poire
+  Cost: 5
+  Name: Graine Poire
   GrowTime: 3
   Icon: {fileID: 0}
   GrowSprite: []
