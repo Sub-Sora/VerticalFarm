@@ -5,7 +5,7 @@ public class SoilSlot : MonoBehaviour
     /// <summary>
     /// Script needed to interact with
     /// </summary>
-    Interact _interact;
+    private Interact _interact;
 
     /// <summary>
     /// Seed planted on the slot
@@ -32,11 +32,27 @@ public class SoilSlot : MonoBehaviour
     /// </summary>
     private int _actGrow;
 
+    /// <summary>
+    /// The seed Object to view when seed plant
+    /// </summary>
+    [SerializeField] private GameObject _seedPlanted;
+
+    /// <summary>
+    /// The seed object when the seed was wilted
+    /// </summary>
+    [SerializeField] private GameObject _seedWilted;
+
+    /// <summary>
+    /// The plant object when the seed was grow
+    /// </summary>
+    [SerializeField] private GameObject _plantGrow;
+
     private void Start()
     {
         _interact = GetComponent<Interact>();
         _interact.InteractEvent += Interaction;
         _seed = GetComponent<Seeds>();
+        ResetSoil();
         GameManager.Instance.SleepEvent += DayPassed;
     }
 
@@ -48,6 +64,7 @@ public class SoilSlot : MonoBehaviour
     {
         _seed.ActSeed = seed;
         _seed.UpdateSeed();
+        _seedPlanted.SetActive(true);
     }
 
     /// <summary>
@@ -93,6 +110,8 @@ public class SoilSlot : MonoBehaviour
                 if (_noWateredDay == GameManager.Instance.BeforeWilted)
                 {
                     _isWilted = true;
+                    _seedPlanted.SetActive(false);
+                    _seedWilted.SetActive(true);
                 }
             }
         }
@@ -108,6 +127,8 @@ public class SoilSlot : MonoBehaviour
         _isWilted = false;
         _noWateredDay = 0;
         _actGrow = 0;
+        _seedPlanted.SetActive(false);
+        _seedWilted.SetActive(false);
     }
 
     public void Interaction()

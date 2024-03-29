@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public SoilSlot SoilAct;
 
+    public bool CanMove;
+
     public delegate void SleepDelegate();
     public SleepDelegate SleepEvent;
 
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
         //
+        CanMove = true;
         SoilAct = null;
         if (ListOfSeeds != null) ListOfSeeds = ListOfSeeds.OrderBy(s => s.Name).ToArray();
         if (ListOfPlants != null) ListOfPlants = ListOfPlants.OrderBy(p => p.Name).ToArray();

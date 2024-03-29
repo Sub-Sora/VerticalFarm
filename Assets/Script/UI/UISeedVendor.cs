@@ -5,15 +5,15 @@ using UnityEngine.UI;
 public class UIVendor : MonoBehaviour
 {
     public Seed_ScriptanbleObj SeedStock;
-    [SerializeField] private TextMeshProUGUI SeedName;
-    [SerializeField] private TextMeshProUGUI SeedPrice;
-    [SerializeField] private Image Logo;
+    [SerializeField] private TextMeshProUGUI _seedName;
+    [SerializeField] private TextMeshProUGUI _seedPrice;
+    [SerializeField] private Image _logo;
 
     private void Start()
     {
-        SeedName.text = SeedStock.Name;
-        SeedPrice.text = "Price : " + SeedStock.Cost;
-        if (SeedStock.Icon != null) Logo.sprite = SeedStock.Icon;
+        _seedName.text = SeedStock.Name;
+        _seedPrice.text = "Price : " + SeedStock.Cost;
+        if (SeedStock.Icon != null) _logo.sprite = SeedStock.Icon;
     }
 
     public void BuyItem()

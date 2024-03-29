@@ -5,7 +5,8 @@ public class SellPlants : MonoBehaviour
     /// <summary>
     /// Script needed to interact with
     /// </summary>
-    Interact _interact;
+    private Interact _interact;
+    [SerializeField] private GameObject _canvaAnim;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class SellPlants : MonoBehaviour
                 GameManager.Instance.GoldReceived = GameManager.Instance.GoldReceived + InvManager.PlantPossessed[i].Sell;
             }
             InvManager.RemovePlant();
+            _canvaAnim.SetActive(true);
         }
     }
 }

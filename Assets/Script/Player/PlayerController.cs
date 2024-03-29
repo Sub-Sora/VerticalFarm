@@ -6,14 +6,12 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement _playerMove;
     private PlayerAction _playerAction;
     private PlayerInput _playerInput;
-    private PlayerMenu _playerMenu;
 
     private void Awake()
     {
         _playerMove = GetComponent<PlayerMovement>();
         _playerAction = GetComponent<PlayerAction>();
         _playerInput = GetComponent<PlayerInput>();
-        _playerMenu = GetComponent<PlayerMenu>();
     }
 
     private void Start()
@@ -27,7 +25,7 @@ public class PlayerController : MonoBehaviour
         {
             case "Move":
                 {
-                    if (value.started)
+                    if (value.started && GameManager.Instance.CanMove)
                     {
                         _playerMove._moveDirection = value.action.ReadValue<Vector2>();
                     }
@@ -39,7 +37,7 @@ public class PlayerController : MonoBehaviour
                 }
             case "Interact":
                 {
-                    if (value.started)
+                    if (value.started && GameManager.Instance.CanMove)
                     {
                         _playerAction.TryInteract();
                     }
@@ -47,17 +45,13 @@ public class PlayerController : MonoBehaviour
                 }
             case "Inventory":
                 {
-                    if (value.started) 
+                    if (value.started && GameManager.Instance.CanMove) 
                     {
-                        _playerMenu.ButtonInventoryPress();
+                        UIManager.Instance.OpenSeedInventory();
                     }
                     break;
                 }
         }
-    }
-
-    private void OnInteract(InputValue value)
-    {
     }
 }
 

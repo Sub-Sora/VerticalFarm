@@ -5,7 +5,7 @@ public class Vendor : MonoBehaviour
     /// <summary>
     /// Script needed to interact with
     /// </summary>
-    Interact _interact;
+    private Interact _interact;
 
     public Transform _vertical;
     public GameObject _seedVendorPrefab;

@@ -5,7 +5,9 @@ public class Sleep : MonoBehaviour
     /// <summary>
     /// Script needed to interact with
     /// </summary>
-    Interact _interact;
+    private Interact _interact;
+
+    [SerializeField] private GameObject _canvaAnim;
 
     private void Start()
     {
@@ -16,5 +18,6 @@ public class Sleep : MonoBehaviour
     public void Interaction()
     {
         GameManager.Instance.NextDay();
+        _canvaAnim.SetActive(true);
     }
 }

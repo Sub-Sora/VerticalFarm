@@ -3,6 +3,7 @@
 public class PlayerAction : MonoBehaviour
 {
     private Interact _interactWith;
+    [SerializeField] private GameObject _buttonInteract;
     private bool _canInteract;
     public void TryInteract()
     {
@@ -16,11 +17,13 @@ public class PlayerAction : MonoBehaviour
     {
         _canInteract = true;
         _interactWith = collision.GetComponent<Interact>();
+        _buttonInteract.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         _canInteract = false;
         _interactWith = null;
+        _buttonInteract.SetActive(false);
     }
 }

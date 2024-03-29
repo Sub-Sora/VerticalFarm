@@ -14,7 +14,8 @@ public class UIManager : MonoBehaviour
     [Header("Vendor UI")]
     public GameObject VendorUI;
 
-    public bool _inventoryOpen;
+    [Header("Plants Sell Info")]
+    public GameObject SellInfo;
 
     public delegate void ShowCursorDelegate();
     public event ShowCursorDelegate ShowCursorEvent, HideCursorEvent;
@@ -38,7 +39,6 @@ public class UIManager : MonoBehaviour
             _instance = this;
         }
         //
-        _inventoryOpen = false;
     }
 
     private void Start()
@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
         Inventory.SetActive(true);
         SeedInv.SetActive(true);
         ShowCursorEvent?.Invoke();
-        _inventoryOpen = true;
+        GameManager.Instance.CanMove = false;
 
         // Hide Plant just in case
         PlantInv.SetActive(false);
@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
         SeedInv.SetActive(false);
         Inventory.SetActive(false);
         HideCursorEvent?.Invoke();
-        _inventoryOpen = false;
+        GameManager.Instance.CanMove = true;
 
         // Just in case
         if (GameManager.Instance.SoilAct != null) GameManager.Instance.SoilAct = null;
@@ -84,9 +84,19 @@ public class UIManager : MonoBehaviour
     {
         Inventory.SetActive(true);
         PlantInv.SetActive(true);
+        ShowCursorEvent?.Invoke();
+        GameManager.Instance.CanMove = false;
 
         // Hide Seed Inventory just in case
         SeedInv.SetActive(false);
+    }
+
+    public void ClosePlantInventory()
+    {
+        Inventory.SetActive(false);
+        PlantInv.SetActive(false);
+        HideCursorEvent?.Invoke();
+        GameManager.Instance.CanMove = true;
     }
 
     /// <summary>
@@ -95,6 +105,8 @@ public class UIManager : MonoBehaviour
     public void OpenVendorUI()
     {
         VendorUI.SetActive(true);
+        ShowCursorEvent?.Invoke();
+        GameManager.Instance.CanMove = false;
     }
 
     /// <summary>
@@ -103,7 +115,22 @@ public class UIManager : MonoBehaviour
     public void CloseVendorInventory()
     {
         VendorUI.SetActive(false);
+        HideCursorEvent?.Invoke();
+        GameManager.Instance.CanMove = true;
     }
+
+    public void OpenSellInfo()
+    {
+        SellInfo.SetActive(true);
+        ShowCursorEvent?.Invoke();
+    }
+
+    public void CloseSellInfo()
+    {
+        SellInfo.SetActive(false);
+        HideCursorEvent?.Invoke();
+    }
+
 
     /// <summary>
     /// Update Gold UI
