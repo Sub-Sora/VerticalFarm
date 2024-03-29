@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 0
   Name: Poire
-  GrowTime: 0
+  GrowTime: 3
   Icon: {fileID: 0}
   GrowSprite: []
   PlantGet: {fileID: 11400000, guid: c2d79ce5bed593444b726d2992af3451, type: 2}

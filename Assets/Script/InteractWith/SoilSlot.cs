@@ -47,9 +47,12 @@ public class SoilSlot : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject _plantGrow;
 
+    private SoilSlotState _soilStateIcon;
+
     private void Start()
     {
         _interact = GetComponent<Interact>();
+        _soilStateIcon = GetComponent<SoilSlotState>();
         _interact.InteractEvent += Interaction;
         _seed = GetComponent<Seeds>();
         ResetSoil();
@@ -65,6 +68,7 @@ public class SoilSlot : MonoBehaviour
         _seed.ActSeed = seed;
         _seed.UpdateSeed();
         _seedPlanted.SetActive(true);
+        _soilStateIcon.WaterState();
     }
 
     /// <summary>
@@ -73,6 +77,7 @@ public class SoilSlot : MonoBehaviour
     private void WateredSoil()
     {
         _isWatered = true;
+        _soilStateIcon.GoodState();
     }
 
     /// <summary>
@@ -103,6 +108,13 @@ public class SoilSlot : MonoBehaviour
             {
                 _actGrow++;
                 _isWatered = false;
+                _soilStateIcon.WaterState();
+                if (_actGrow >= _seed.GrowTime)
+                {
+                    _seedPlanted.SetActive(false);
+                    _plantGrow.SetActive(true);
+                    _soilStateIcon.PlantGrowState();
+                }
             }
             else
             {
@@ -112,6 +124,7 @@ public class SoilSlot : MonoBehaviour
                     _isWilted = true;
                     _seedPlanted.SetActive(false);
                     _seedWilted.SetActive(true);
+                    _soilStateIcon.SeedDiedState();
                 }
             }
         }
@@ -129,6 +142,8 @@ public class SoilSlot : MonoBehaviour
         _actGrow = 0;
         _seedPlanted.SetActive(false);
         _seedWilted.SetActive(false);
+        _plantGrow.SetActive(false);
+        _soilStateIcon.PlantSeedState();
     }
 
     public void Interaction()
@@ -145,7 +160,7 @@ public class SoilSlot : MonoBehaviour
                     Gather();
                 }
                 // If the soil isn't watered, then can Watered it
-                if (!_isWatered)
+                else if (!_isWatered)
                 {
                     WateredSoil();
                 }
