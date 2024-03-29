@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4001cf6229602014c816b6cd7e67793a, type: 3}
+  m_Name: Patate
+  m_EditorClassIdentifier: 
+  Cost: 20
+  Name: Seed Potatoe
+  GrowTime: 3
+  Icon: {fileID: 0}
+  GrowSprite: []
+  PlantGet: {fileID: 11400000, guid: 4a8fd7d644f90e3469eb4152f6a377c8, type: 2}

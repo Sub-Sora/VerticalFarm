@@ -224,7 +224,7 @@ PrefabInstance:
     - target: {fileID: 360082823100154552, guid: 72118ac55b4062b4aad3eb258a980bc5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.645
+      value: -1.023
       objectReference: {fileID: 0}
     - target: {fileID: 360082823100154552, guid: 72118ac55b4062b4aad3eb258a980bc5,
         type: 3}
@@ -1481,7 +1481,7 @@ PrefabInstance:
     - target: {fileID: 360082823100154552, guid: 72118ac55b4062b4aad3eb258a980bc5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.326
+      value: -0.512
       objectReference: {fileID: 0}
     - target: {fileID: 360082823100154552, guid: 72118ac55b4062b4aad3eb258a980bc5,
         type: 3}
@@ -7128,11 +7128,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ListOfSeeds:
   - {fileID: 11400000, guid: 9690327a3ad1f414686ffbc5269085ff, type: 2}
+  - {fileID: 11400000, guid: 04a4daec207c2184884700e62af82a43, type: 2}
+  - {fileID: 11400000, guid: 1cb7211fcda76f54599091a68cfacdf6, type: 2}
   ListOfPlants:
+  - {fileID: 11400000, guid: 3ac613bbb2071524b9b04c475e8192e3, type: 2}
   - {fileID: 11400000, guid: c2d79ce5bed593444b726d2992af3451, type: 2}
+  - {fileID: 11400000, guid: 4a8fd7d644f90e3469eb4152f6a377c8, type: 2}
   BeforeWilted: 2
   GoldReceived: 0
-  StartGold: 0
+  StartGold: 5
   SoilAct: {fileID: 0}
   CanMove: 0
 --- !u!1 &1732922028

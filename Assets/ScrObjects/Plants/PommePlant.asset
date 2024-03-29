@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4001cf6229602014c816b6cd7e67793a, type: 3}
-  m_Name: Poire
+  m_Script: {fileID: 11500000, guid: 84e35a07425a5704e8eced05a1b6535e, type: 3}
+  m_Name: PommePlant
   m_EditorClassIdentifier: 
-  Cost: 5
-  Name: Graine Poire
-  GrowTime: 3
+  Sell: 13
+  Name: Apple
   Icon: {fileID: 0}
-  GrowSprite: []
-  PlantGet: {fileID: 11400000, guid: c2d79ce5bed593444b726d2992af3451, type: 2}
